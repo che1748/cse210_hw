@@ -1,52 +1,76 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.Contracts;
 using System.IO;
 
 
 public class Journal
 {
-    public List<Entry> _journal = new List<Entry>();
-    public string _filename;
+    public Entry _entry = new Entry();
+    //private Password _password = new Password();
 
 
-    public void Display()
-    {
-        foreach (Entry entry in _journal)
-        {
-            Console.WriteLine(entry);
-        }
-    }
+    
 
-    public void LoadJournal()
+    public Entry LoadJournal()
     {
         Console.WriteLine("What is the filename?");
         string input = Console.ReadLine();
+        Console.WriteLine("What is the password?");
+        string password = Console.ReadLine();
 
-        string[] lines = System.IO.File.ReadAllLines(input);
-        Entry loadEntry = new Entry();
-        foreach (string line in lines)
+        Password database = new Password();
+        string[] passwords = System.IO.File.ReadAllLines("password.txt");
+        foreach (string line in passwords)
         {
             string[] parts = line.Split(",");
-            loadEntry._date.Add(parts[0]);
-            loadEntry._respondedPropmt.Add(parts[1]);
-            loadEntry._response.Add(parts[2]);
-
+            database._filename.Add(parts[0]);
+            database._密码.Add(parts[1]);
         }
+
+        Entry loadEntry = new Entry();
+        int index = database._filename.IndexOf(input);
+        if (password != database._密码[index])
+        {
+            Console.Write("Wrong password!");
+        }
+        else
+        {
+            string[] lines = System.IO.File.ReadAllLines(input);
+            foreach (string line in lines)
+            {
+                string[] parts = line.Split(";");
+                Console.WriteLine(parts);
+                loadEntry._date.Add(parts[0]);
+                loadEntry._respondedPropmt.Add(parts[1]);
+                loadEntry._response.Add(parts[2]);
+            }
+        }
+        return loadEntry;
+
+        
     }
 
     public void SaveJournal()
     {
         Console.WriteLine("What is the filename?");
         string input = Console.ReadLine();
+        Console.WriteLine("Please set a password:");
+        string password = Console.ReadLine();
 
         using (StreamWriter outputFile = new StreamWriter(input))
         {
-            foreach (Entry entry in _journal)
+            for (int i=0; i< (_entry._respondedPropmt.Count); i++)
             {
-                outputFile.WriteLine($"{entry._date}, {entry._respondedPropmt}, {entry._response}");
+                outputFile.WriteLine($"{_entry._date[i]};{_entry._respondedPropmt[i]};{_entry._response[i]}");
             }
-            
         }
 
+    string filePassword = "password.txt";
+    string appendText = $"{input},{password}" + Environment.NewLine;
+    File.AppendAllText(filePassword, appendText);    
+        
+      
+        
     }  
 }
 
