@@ -50,25 +50,7 @@ public class Scripture
         else {return false;}
     }
 
-    public void HideWordsFromScripture()
-    {
-        List<Word> unihidenWords = new List<Word>();
-        foreach (Word word in _scripture)
-        {
-            if (word.IsHidden() == false)
-            {
-                unihidenWords.Add(word);
-            }
-        }
-
-        Random rand = new Random();
-        int randomIndex = rand.Next(0,unihidenWords.Count);
-
-        if (unihidenWords.Count > 0)
-        {
-
-        }
-    }
+    
 
     public void HideWords()
     {
