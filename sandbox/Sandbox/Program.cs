@@ -16,5 +16,9 @@ class Program
         {
             Console.WriteLine(i);
         }
+
+        string a = "apple.";
+        Console.WriteLine(a.Count());
+        Console.WriteLine(a.Length);
     }
 }

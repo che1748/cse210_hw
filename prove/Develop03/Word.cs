@@ -1,4 +1,7 @@
 using System;
+using System.Diagnostics.Contracts;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 public class Word
 {
@@ -23,6 +26,17 @@ public class Word
 
     public string GetWord()
     {
-        return _word;
+        if (_hidden)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < _word.Length; i++)
+            {
+                sb.Append("_");
+            }
+        return sb.ToString();
+
+        }
+        else {return _word;}
     }
+
 }

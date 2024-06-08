@@ -24,9 +24,7 @@ public class Scripture
         StringBuilder sb = new StringBuilder();
         foreach (Word word in _scripture)
         {
-            if (word.IsHidden()) {sb.Append("___ ");}
-
-            else {sb.Append($"{word.GetWord()} ");}
+            sb.Append($"{word.GetWord()} ");
         }
 
         Console.WriteLine(sb);
