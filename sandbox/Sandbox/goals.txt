@@ -1,0 +1,4 @@
+760
+Simple goal,give a talk,speak in sacrament meeting when asked,100,True,100
+Eternal goal,study scriptures,study for at least 30 minutes each time,10,10
+Checklist goal,attend the temple,do ordinance,50,500,3,3,650

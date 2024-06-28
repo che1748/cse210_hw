@@ -1,24 +1,18 @@
 using System;
-
+using System.Security;
+using System.Xml.Serialization;
 class Program
 {
     static void Main(string[] args)
     {
-        List<string> test = new List<string>()
-        {
-            "apple","bee","cat"
-        };
+        string[] lines = System.IO.File.ReadAllLines("filename");
+        
+        
+        
 
-        Console.Write(test[0]);
-        Console.WriteLine(test.Count);
-
-        for (int i=0; i<4; i++)
-        {
-            Console.WriteLine(i);
-        }
-
-        string a = "apple.";
-        Console.WriteLine(a.Count());
-        Console.WriteLine(a.Length);
+    
     }
+
+    
 }
+
