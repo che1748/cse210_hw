@@ -23,22 +23,33 @@ public class Order
         {
             total += product.GetProductTotalCost();
         }
-        if (_customer.LiveInUSA())
-        {total += 5;}
+
+        if (_productList.Count() != 0)
+        {
+            if (_customer.LiveInUSA())
+            {total += 5;}
+            else
+            {total += 35;}
+            return Math.Round(total,2);
+        }
         else
-        {total += 35;}
-        return Math.Round(total,2);
+        {return 0;}
     }
 
     public void DisplayPackingLabel()
     {
-        foreach (Product product in _productList)
+        if (_productList.Count() != 0)
         {
-            //Console.WriteLine($"Product name: {product.GetName()}  Product ID: {product.GetID()}");
-            string string1 = $"{product.GetName()}";
-            string string2 = $"{product.GetID()}";
-            Console.WriteLine(String.Format("Product name: {0,-20} Product ID: {1,-20}", string1 + "", string2));
+            foreach (Product product in _productList)
+            {
+                //Console.WriteLine($"Product name: {product.GetName()}  Product ID: {product.GetID()}");
+                string string1 = $"{product.GetName()}";
+                string string2 = $"{product.GetID()}";
+                Console.WriteLine(String.Format("Product name: {0,-20} Product ID: {1,-20}", string1 + "", string2));
+            }
         }
+        else
+        {Console.WriteLine("This customer has not purchased anything yet.");}
 
     }
 

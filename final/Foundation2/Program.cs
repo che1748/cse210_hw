@@ -23,8 +23,10 @@ class Program
         hisOrder.AddProduct(waterBottle);
         hisOrder.AddProduct(pen);
 
+        Order ord = new Order(me);
+
         List<Order> orderList = new List<Order>()
-        {myOrder, hisOrder};
+        {myOrder, hisOrder, ord};
 
         foreach (Order order in orderList)
         {
